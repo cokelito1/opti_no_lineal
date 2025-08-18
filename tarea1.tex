@@ -1,0 +1,91 @@
+
+\documentclass[a4paper,oneside,10.5pt]{USMArt}
+
+\usepackage{personal}
+\usepackage{comment}
+\usepackage[letterpaper, left=2cm, right=2cm]{geometry}
+
+\title{Tarea I - Optimización y Control}
+\sigla{MAT-379 }
+\ramo{Optimización y Control}
+\profesor{Patricio Guzman}
+\semestre{2025-1}
+\author{Jorge Bravo}
+
+\DeclareMathOperator{\epi}{epi}
+
+\begin{document}
+\maketitle
+
+\begin{sol}
+  Notemos que la función $f : X \to \overline{\RR}$ esta bien definida, pues en la recta real extendida siempre existe
+  el supremo. Recordemos que dado $\gamma \in \RR$ se define el sub nivel asociado como
+  \begin{equation*}
+    \Gamma_{\gamma}(f) := f^{-1}((-\infty, \gamma]) = \{ x \in X \; | \; f(x) \leq \gamma\}
+  \end{equation*}
+
+  Ahora notemos lo siguiente
+  \begin{equation}
+    \label{sup}
+    f(x) \leq \gamma \iff \sup_{\alpha \in \mathcal{A}} f_{\alpha}(x) \leq \gamma \iff \forall \alpha \in \mathcal{A}, f_{\alpha}(x) \leq \gamma
+  \end{equation}
+
+  De lo que concluimos que
+  \begin{equation*}
+    \Gamma_{\gamma}(f) = \bigcap_{\alpha \in \mathcal{A}} \Gamma_{\gamma}(f_{\alpha})
+  \end{equation*}
+
+  Dado que cada $f_{\alpha}$ es $\tau$-s.c.i.  tenemos que $\Gamma_{\gamma}(f_{\alpha})$ es cerrado para todo $\alpha \in \mathcal{A}$. Dado que la intersección arbitraria de cerrados es cerrada, tenemos que $\Gamma_{\gamma}(f)$ es cerrado
+  para todo $\gamma \in \RR$, es decir $f$ es $\tau$-s.c.i.
+
+  Ahora supongamos que las $f_{\alpha}$ son convexas para todo $\alpha \in \mathcal{A}$. Por lo tanto tenemos que el epigrafo es convexo para toda $f_{\alpha}$. Recordemos que el epigrafo se define como
+  \begin{equation*}
+    \epi(f) := \{ (x, \gamma) \in X \times \RR \; | \; f(x) \leq \gamma\}
+  \end{equation*}
+
+  Por la ecuación $(\ref{sup})$, tenemos la siguiente igualdad
+  \begin{equation*}
+    \epi(f) = \bigcap_{\alpha \in \mathcal{A}} \epi(f_{\alpha})
+  \end{equation*}
+
+  Dado que la intersección (arbitraria) de convexos es convexa, tenemos que $\epi(f)$ es convexo y por tanto $f$ es convexa.
+\end{sol}
+
+\begin{sol}
+  Directo, pues las funciones continuas son semicontinuas inferior. Luego la funcion $x \mapsto ||Ax - b||_{Y}$
+  es continua, pues $x \mapsto Ax - b$ es continua para $b \in Y$ (pues $A$ es continua). Dado que $|| \cdot ||_{Y} : Y \to \RR$ es continua, la composición tambien lo es.
+\end{sol}
+
+\begin{sol}
+  que chota es $(P)$????????????????
+\end{sol}
+
+\begin{sol}
+  Hacer despues
+\end{sol}
+
+\begin{sol}
+  $(\Leftarrow)$ Supongamos que para todo $\{x_{1}, \dots, x_{n}\} \subseteq X$ y $\lambda_{1}, \dots, \lambda_{n} \in [0, 1]$ se tiene que
+  \begin{equation*}
+    \sum_{i = 1}^{n} \lambda_{i} = 1 \implies f(\sum_{i = 1}^{n} \lambda_{i} x_{i}) \leq \sum_{i = 1}^{n} f(x_{i})
+  \end{equation*}
+
+  Luego dado $x, y \in X$ y $\lambda \in [0,1]$, tenemos que $\lambda + (1 - \lambda) = 1$, por lo tanto por hipotesis
+  tenemos que
+  \begin{equation*}
+    f(\lambda x + (1 - \lambda) y) \leq \lambda f(x) + (1 - \lambda) f(y)
+  \end{equation*}
+
+  Es decir, $f$ es convexa.
+
+  $(\implies)$ Procedamos por inducción. El caso para $n = 2$ es trivial, pues es la convexidad usual. Supongamos para
+  $n$ y demostramos para $n + 1$, Sean $x_{1}, \dots, x_{n + 1} \in X$ y $\lambda_{1}, \dots, \lambda_{n + 1} \in [0, 1]$
+  tal que sumen $1$. Luego tenemos que
+  \begin{equation*}
+    f(\lambda_{n + 1} x_{n +1} + (1 - \lambda_{n + 1})(\sum_{k = 1}^{n} \lambda_{k} x_{k})) \leq \lambda_{n + 1}f(x_{n+1}) + (1 - \lambda_{n + 1}) f(\sum_{k = 1}^{n} \lambda_{k} x_{k})
+  \end{equation*}
+
+  Luego, podemos asumir que los $\lamda_{k}$
+\end{sol}
+
+\end{document}
