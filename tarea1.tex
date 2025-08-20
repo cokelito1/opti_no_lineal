@@ -103,7 +103,7 @@
 
           Comprobemos que en efecto es un producto interno
           \begin{equation*}
-            \tr(A^2) = 0 \iff \sum_{i = 1}^n \sum_{j = 1}^n a_{ij}a_{ji} = \iff \sum_{i = 1}^n \sum_{j = 1}^n a_{ij}^2 = 0 \iff \forall i,j \in \{1, \dots, n\} a_{ij} = 0 \iff A = 0
+            \tr(A^2) = 0 \iff \sum_{i = 1}^n \sum_{j = 1}^n a_{ij}a_{ji} = 0 \iff \sum_{i = 1}^n \sum_{j = 1}^n a_{ij}^2 = 0 \iff \forall i,j \in \{1, \dots, n\} a_{ij} = 0 \iff A = 0
           \end{equation*}
 
           Ademas notemos que de lo anterior tenemos que
@@ -140,6 +140,21 @@
           \begin{equation*}
             b^TPb = b^TX^TXb =(Xb)^TXb = ||Xb||^2 \geq 0
           \end{equation*}
+
+    \item
+          Notemos primero la siguiente igualdad
+          \begin{equation*}
+            \sum_{i,j = 1}^n C_{ij}(\frac{1 - x_i^T x_j}{2}) = \frac{1}{2} \sum_{i, j = 1}^n C_{ij} - \frac{1}{2} \tr(CX^TX)
+          \end{equation*}
+
+          Luego maximizar la suma es lo mismo que minimizar $\tr(CX^TX)$. Luego esto es
+          equivalente a minimizar $\tr(CM)$ con $M \in S_+^n(\RR)$, pues toda matriz
+          simetrica definida semi-positiva tiene una descompsocion de Cholesky, es decir
+          $M = X^TX$ para alguna matriz $X$. Luego dado que $M$ es de Gram, sabemos que
+          en la diagonal estan las normas de los elementos de las columnas de su descomposicion. Por lo tanto lo que queremos es
+          \begin{gather*}
+            \text{Minimizar } \tr(CM) \text{ con } M \in S^n_+(\RR)\\ \text{ tal que } \tr(A_iM) = 1 \text{ donde } A_i \text{ tiene el vector canonico } e_i \text{ en la columna }i \text{ para } i \in \{1, \dots, n\}
+          \end{gather*}
   \end{enumerate}
 \end{sol}
 
