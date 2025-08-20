@@ -1,20 +1,26 @@
-
 \documentclass[a4paper,oneside,10.5pt]{USMArt}
 
 \usepackage{personal}
 \usepackage{comment}
+\usepackage{hyperref}
 \usepackage[letterpaper, left=2cm, right=2cm]{geometry}
 
-\title{Tarea I - Optimización y Control}
+\title{Tarea I - Optimización no lineal}
 \sigla{MAT-379 }
-\ramo{Optimización y Control}
+\ramo{Optimización no lineal}
 \profesor{Patricio Guzman}
-\semestre{2025-1}
+\semestre{2025-2}
 \author{Jorge Bravo}
 
 \DeclareMathOperator{\epi}{epi}
+\DeclareMathOperator{\tr}{Tr}
+\DeclareMathOperator{\val}{Val}
+
+
+\newtheorem{sol}{Soluci\'on}
 
 \begin{document}
+
 \maketitle
 
 \begin{sol}
@@ -52,16 +58,89 @@
 \end{sol}
 
 \begin{sol}
-  Directo, pues las funciones continuas son semicontinuas inferior. Luego la funcion $x \mapsto ||Ax - b||_{Y}$
+  Directo, pues las funciones continuas son semicontinuas inferior, esto es facil de
+  ver pues tenemos la igualdad
+
+  \begin{equation*}
+    \Gamma_\gamma(f) = f^{-1}((-\infty, \gamma])
+  \end{equation*}
+
+  Dado que preimagen de cerrados bajo funciones continuas es cerrado, tenemos que si $f$
+  es continua, el subnivel es cerrado.
+
+  Luego la funcion $x \mapsto ||Ax - b||_{Y}$
   es continua, pues $x \mapsto Ax - b$ es continua para $b \in Y$ (pues $A$ es continua). Dado que $|| \cdot ||_{Y} : Y \to \RR$ es continua, la composición tambien lo es.
 \end{sol}
 
 \begin{sol}
-  que chota es $(P)$????????????????
+  Notemos que
+  \begin{equation*}
+    \forall x \in X, \val(P) \leq f(x) \implies \mu(S) \val(P) \leq \int_S f d \mu
+  \end{equation*}
+
+  Dado que $\mu(S) = 1$, obtenemos que para toda medida $\mu \geq 0$ tal que
+  $\mu(S) = 1$ se tenga la desigualdad. De esto obtenemos que
+
+  \begin{equation*}
+    \val(P) \leq \val(P_m)
+  \end{equation*}
+
+  Si consideramos una sucesion minimizante $\{x_n\} \subseteq X$ tal que $f(x_n) \to \val(P)$ nos construimos la sucesion de medidas $\{\delta_{x_n}\} \subseteq \mathcal{M}^+$, donde $\delta_{x_n}(A) = 1 \iff x_n \in A$, obtenemos que
+
+  \begin{equation*}
+    \int_S f d \delta_{x_n} = f(x_n) \underset{n \to \infty}{\to} \val(P)
+  \end{equaiton*}
+
+  Por lo tanto $\val(P) = \val(P_m)$
 \end{sol}
 
-\begin{sol}
-  Hacer despues
+\begin{sol}\hfill
+  \begin{enumerate}
+    \item En efecto, sea $A, B \in \mathbf{S}^n$, luego tenemos que
+          \begin{equation*}
+            \tr(AB) = \sum_{i = 1}^{n} \sum_{j = 1}^n a_{ij}b_{ji}
+          \end{equation*}
+
+          Comprobemos que en efecto es un producto interno
+          \begin{equation*}
+            \tr(A^2) = 0 \iff \sum_{i = 1}^n \sum_{j = 1}^n a_{ij}a_{ji} = \iff \sum_{i = 1}^n \sum_{j = 1}^n a_{ij}^2 = 0 \iff \forall i,j \in \{1, \dots, n\} a_{ij} = 0 \iff A = 0
+          \end{equation*}
+
+          Ademas notemos que de lo anterior tenemos que
+          \begin{equation*}
+            \inner{A}{A} = \sum_{i = 1}^n \sum_{j = 1}^n a_{ij}^2 \geq 0
+          \end{equation*}
+
+          Veamos que es simetrico
+          \begin{equation*}
+            \inner{A}{B} = \sum_{i = 1}^n \sum_{j = 1}^n a_{ij} b_{ji} = \sum_{i = 1}^n \sum_{j = 1}^n b_{ij} a_{ji} = \inner{B}{A}
+          \end{equation*}
+
+          Verifiquemos linealidad en el primer argumento, pues la bilineallidad sigue
+          de esto y la simetria. Sea $C \in \mathbf{S}$ y $\lambda \in \RR$, luego
+          \begin{equation*}
+            \inner{A + \lambda B}{C} = \sum_{i = 1}^n \sum_{j = 1}^n (a_{ij} + \lambda b_{ij}) c_{ji} = \sum_{i = 1}^n \sum_{j = 1}^n a_{ij} c_{ji} + \lambda \sum_{i = 1}^n \sum_{j = 1}^n b_{ij} c_{ji} = \inner{A}{C} + \lambda \inner{B}{C}
+          \end{equation*}
+
+          Por lo tanto la traza si define un producto interno. Dado que el espacio es
+          de dimension finita tenemos que es completo y por tanto un espacio de Hilbert.
+
+    \item Notemos que de la definicion de $P$, la matriz es claramente simetrica
+          pues
+          \begin{equation*}
+            P_{ij} = x_i^Tx_j = x_j^Tx_i = P_{ji}
+          \end{equation*}
+
+          Veamos que $P = X^TX$. Notemos que
+          \begin{equation*}
+            (X^{T}X)_{ij} = \sum_{k = 1}^n x_{k,i} x_{k,j} = x_{i}^T x_j
+          \end{equation*}
+
+          Por lo tanto se tiene la igualdad $P = X^TX$. Si $b \in \RR^n$, tenemos que
+          \begin{equation*}
+            b^TPb = b^TX^TXb =(Xb)^TXb = ||Xb||^2 \geq 0
+          \end{equation*}
+  \end{enumerate}
 \end{sol}
 
 \begin{sol}
@@ -82,10 +161,13 @@
   $n$ y demostramos para $n + 1$, Sean $x_{1}, \dots, x_{n + 1} \in X$ y $\lambda_{1}, \dots, \lambda_{n + 1} \in [0, 1]$
   tal que sumen $1$. Luego tenemos que
   \begin{equation*}
-    f(\lambda_{n + 1} x_{n +1} + (1 - \lambda_{n + 1})(\sum_{k = 1}^{n} \lambda_{k} x_{k})) \leq \lambda_{n + 1}f(x_{n+1}) + (1 - \lambda_{n + 1}) f(\sum_{k = 1}^{n} \lambda_{k} x_{k})
+    f(\lambda_{n + 1} x_{n +1} + (1 - \lambda_{n + 1})(\sum_{k = 1}^{n} \lambda_{k} x_{k})) \leq \lambda_{n + 1}f(x_{n+1}) + (1 - \lambda_{n + 1}) f(\sum_{k = 1}^{n} \frac{\lambda_{k}}{1 - \lambda_{n + 1}} x_{k})
   \end{equation*}
 
-  Luego, podemos asumir que los $\lamda_{k}$
+  Dado que los coeficientes de la derecha suman $1$, pues $1 - \lambda_{n + 1} = \sum_{k = 1}^n \lambda_k$, aplicamos la hipotesis de induccion y obtenemos que
+  \begin{equation*}
+    f(\sum_{k = 1}^{n + 1} \lambda_k x_k) \leq \lambda_{n + 1} f(x_{n + 1}) + \sum_{k = 1}^n \lambda_k f(x_k) =  \sum_{k = 1}^{n + 1} \lambda_k f(x_k)
+  \end{equation*}
 \end{sol}
 
 \end{document}
